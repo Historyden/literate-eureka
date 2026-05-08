@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "Concept": {
+      "title": "Concept",
+      "description": "A node in the knowledge graph representing a single study concept.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "prerequisites": { "type": "array", "items": { "type": "string" } },
+        "masteryScore": { "type": "number", "description": "0 to 1 score of knowledge state" },
+        "status": { "type": "string", "enum": ["mastered", "blocked", "focus", "locked"] },
+        "lastReviewed": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "description", "prerequisites", "masteryScore", "status"]
+    },
+    "StudyAttempt": {
+      "title": "Study Attempt",
+      "description": "A record of a user interacting with a concept.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "conceptId": { "type": "string" },
+        "problem": { "type": "string" },
+        "solution": { "type": "string" },
+        "isSuccess": { "type": "boolean" },
+        "feedback": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "conceptId", "problem", "solution", "isSuccess", "timestamp"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Custom user profile for the matrix platform.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "username": { "type": "string" },
+        "bio": { "type": "string" },
+        "avatar": { "type": "string" },
+        "expertise": { "type": "string" },
+        "level": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "username", "level", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "UserProfile",
+      "description": "Custom profiles for learners."
+    },
+    "concepts": {
+      "schema": "Concept",
+      "description": "The DAG nodes representing knowledge structure."
+    },
+    "attempts": {
+      "schema": "StudyAttempt",
+      "description": "History of user interactions and learning events."
+    }
+  }
+}

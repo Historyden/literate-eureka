@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --bg: #F9FAFB;
+  --ink: #111827;
+  --line: #E5E7EB;
+  --accent: #FF6321;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.technical-card {
+  background: #1A1A1A;
+  border: 1px solid var(--line);
+}
+
+.data-header {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 11px;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mono-value {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
